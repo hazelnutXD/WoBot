@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 500px;
+      font-family: "Microsoft YaHei UI";
+    }
+
+    .container {
+      width: 100%;
+      padding: 50px 0 30px;
+    }
+
+    .container h2 {
+      color: #333;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .pr {
+      width: 100%;
+      height: 30px;
+      margin: 20px 0 10px;
+      text-align: center;
+      font-size: 15px;
+      line-height: 30px;
+      letter-spacing: 2px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .recordTime {
+      color: #666;
+      text-align: center;
+    }
+
+    .info {
+      width: 100%;
+      height: 160px;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .info .row {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .info dl {
+      width: 20%;
+      height: 70px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    .info dt {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      letter-spacing: 2px;
+    }
+
+    .recentList {
+      padding: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .recentList p {
+      font-size: 14px;
+      color: #777;
+      text-align: center;
+    }
+
+    .recentList ul {
+      width: 100%;
+      margin: 15px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .recentList li {
+      width: 12.5%;
+      height: 16px;
+      text-align: center;
+      list-style: none;
+      overflow: hidden;
+    }
+
+    .bottom {
+      font-size: 13px;
+      text-align: center;
+      color: #444;
+      font-weight: 600;
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <h2>
+        [{{ recentData.clanInfo.tag }}] {{ recentData.userName }} {{
+        recentData.serverName }}
+      </h2>
+      <div class="pr" style="background-color: {{ recentData.data.pr.color }}">
+        {{ recentData.data.pr.name }} (+{{ recentData.data.pr.nextValue }})
+      </div>
+
+      <div class="recordTime">记录时间： {{ recordTime }}</div>
+
+      <div class="info">
+        <div class="row">
+          <dl>
+            <dt>场次</dt>
+            <dd>{{ recentData.data.battles }}</dd>
+          </dl>
+          <dl>
+            <dt>胜率</dt>
+            <dd>{{ recentData.data.wins }}%</dd>
+          </dl>
+          <dl>
+            <dt>场均</dt>
+            <dd>{{ recentData.data.damage }}</dd>
+          </dl>
+        </div>
+        <div class="row">
+          <dl>
+            <dt>经验</dt>
+            <dd>{{ recentData.data.xp }}</dd>
+          </dl>
+          <dl>
+            <dt>K/D</dt>
+            <dd>{{ recentData.data.kd }}</dd>
+          </dl>
+          <dl>
+            <dt>命中</dt>
+            <dd>{{ recentData.data.hit }}</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="recentList">
+        <p>Warships stats by type</p>
+        <ul>
+          <li>战舰</li>
+          <li>等级</li>
+          <li>场次</li>
+          <li>PR</li>
+          <li>经验</li>
+          <li>胜率</li>
+          <li>场均</li>
+          <li>命中</li>
+        </ul>
+        {{#each recentList}}
+        <ul>
+          <li>{{ this.shipInfo.nameCn }}</li>
+          <li>{{ this.shipInfo.level }}</li>
+          <li>{{ this.battles }}</li>
+          <li style="background-color: {{ this.pr.color }}">
+            {{ this.pr.value }}
+          </li>
+          <li>{{ this.xp }}</li>
+          <li>{{ this.wins }}</li>
+          <li>{{ this.damage }}</li>
+          <li>{{ this.hit }}</li>
+        </ul>
+        {{/each}}
+      </div>
+      <div class="bottom">&copy; 焦糖榛果 窝宝 Power by yuyuko</div>
+    </div>
+  </body>
+</html>

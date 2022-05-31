@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 500px;
+      font-family: "Microsoft YaHei UI";
+    }
+
+    .container {
+      width: 100%;
+      padding: 50px 0 30px;
+    }
+
+    .container h2 {
+      color: #333;
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .container h3 {
+      color: #333;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .pr {
+      width: 100%;
+      height: 30px;
+      margin: 20px 0 10px;
+      text-align: center;
+      font-size: 15px;
+      line-height: 30px;
+      letter-spacing: 2px;
+      color: #333;
+    }
+
+    .recordTime {
+      color: #666;
+      text-align: center;
+    }
+
+    .info {
+      width: 100%;
+      height: 160px;
+      margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .info .row {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .info dl {
+      width: 20%;
+      height: 70px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    .info dt {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      letter-spacing: 2px;
+    }
+
+    .bottom {
+      font-size: 13px;
+      text-align: center;
+      color: #444;
+      font-weight: 600;
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <h2>
+        {{ personalShipData.userName }} {{
+        personalShipData.shipInfo.shipInfo.nameCn }}
+      </h2>
+      <div
+        class="pr"
+        style="background-color: {{ personalShipData.shipInfo.pr.color }}"
+      >
+        {{ personalShipData.shipInfo.pr.name }} (+{{
+        personalShipData.shipInfo.pr.nextValue }})
+      </div>
+
+      <div class="recordTime">最后战斗时间： {{ lastDateTime }}</div>
+
+      <div class="info">
+        <div class="row">
+          <dl>
+            <dt>场次</dt>
+            <dd>{{ personalShipData.shipInfo.battles }}</dd>
+          </dl>
+          <dl>
+            <dt>胜率</dt>
+            <dd>{{ personalShipData.shipInfo.wins }}%</dd>
+          </dl>
+          <dl>
+            <dt>场均</dt>
+            <dd>{{ personalShipData.shipInfo.damage }}</dd>
+          </dl>
+        </div>
+        <div class="row">
+          <dl>
+            <dt>经验</dt>
+            <dd>{{ personalShipData.shipInfo.xp }}</dd>
+          </dl>
+          <dl>
+            <dt>K/D</dt>
+            <dd>{{ personalShipData.shipInfo.kd }}</dd>
+          </dl>
+          <dl>
+            <dt>命中</dt>
+            <dd>{{ personalShipData.shipInfo.hit }}</dd>
+          </dl>
+        </div>
+      </div>
+
+      <h3>最高记录</h3>
+      <div class="info">
+        <div class="row">
+          <dl>
+            <dt>最高伤害</dt>
+            <dd>{{ personalShipData.shipInfo.extensionDataInfo.maxDamage }}</dd>
+          </dl>
+          <dl>
+            <dt>侦察伤害</dt>
+            <dd>
+              {{ personalShipData.shipInfo.extensionDataInfo.maxDamageScouting
+              }}
+            </dd>
+          </dl>
+          <dl>
+            <dt>最高潜在</dt>
+            <dd>
+              {{ personalShipData.shipInfo.extensionDataInfo.maxTotalAgro }}
+            </dd>
+          </dl>
+        </div>
+        <div class="row">
+          <dl>
+            <dt>经验</dt>
+            <dd>{{ personalShipData.shipInfo.extensionDataInfo.maxXp }}</dd>
+          </dl>
+          <dl>
+            <dt>击杀</dt>
+            <dd>{{ personalShipData.shipInfo.extensionDataInfo.maxFrags }}</dd>
+          </dl>
+          <dl>
+            <dt>飞机击落</dt>
+            <dd>
+              {{ personalShipData.shipInfo.extensionDataInfo.maxPlanesKilled }}
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="bottom">&copy; 焦糖榛果 窝宝 Power by yuyuko</div>
+    </div>
+  </body>
+</html>

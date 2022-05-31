@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 500px;
+      font-family: "Microsoft YaHei UI";
+    }
+
+    .container {
+      width: 100%;
+      padding: 50px 0 30px;
+    }
+
+    .container h2 {
+      color: #333;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .pr {
+      width: 100%;
+      height: 30px;
+      margin: 20px 0 10px;
+      text-align: center;
+      font-size: 15px;
+      line-height: 30px;
+      letter-spacing: 2px;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .recordTime {
+      color: #666;
+      text-align: center;
+    }
+
+    .info {
+      width: 100%;
+      height: 160px;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .info .row {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .info dl {
+      width: 20%;
+      height: 70px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    .info dt {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      letter-spacing: 2px;
+    }
+
+    .typeList,
+    .mode {
+      padding: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .typeList p,
+    .mode p {
+      font-size: 14px;
+      color: #777;
+      text-align: center;
+    }
+
+    .typeList ul,
+    .mode ul {
+      width: 100%;
+      margin: 15px 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .typeList li,
+    .mode li {
+      width: 16.5%;
+      height: 16px;
+      text-align: center;
+      list-style: none;
+      overflow: hidden;
+    }
+
+    .bottom {
+      font-size: 13px;
+      text-align: center;
+      color: #444;
+      font-weight: 600;
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <h2>
+        [{{ infoData.clanInfo.tag }}] {{ infoData.userName }} {{
+        infoData.serverName }}
+      </h2>
+      <div class="pr" style="background-color: {{ infoData.pr.color }}">
+        {{ infoData.pr.name }} (+{{ infoData.pr.nextValue }})
+      </div>
+
+      <div class="recordTime">最后战斗时间： {{ lastDateTime }}</div>
+
+      <div class="info">
+        <div class="row">
+          <dl>
+            <dt>场次</dt>
+            <dd>{{ infoData.pvp.battles }}</dd>
+          </dl>
+          <dl>
+            <dt>胜率</dt>
+            <dd>{{ infoData.pvp.wins }}%</dd>
+          </dl>
+          <dl>
+            <dt>场均</dt>
+            <dd>{{ infoData.pvp.damage }}</dd>
+          </dl>
+        </div>
+        <div class="row">
+          <dl>
+            <dt>经验</dt>
+            <dd>{{ infoData.pvp.xp }}</dd>
+          </dl>
+          <dl>
+            <dt>K/D</dt>
+            <dd>{{ infoData.pvp.kd }}</dd>
+          </dl>
+          <dl>
+            <dt>命中</dt>
+            <dd>{{ infoData.pvp.hit }}</dd>
+          </dl>
+        </div>
+      </div>
+
+      <div class="typeList">
+        <p>Warships stats by type</p>
+        <ul>
+          <li>类型</li>
+          <li>场次</li>
+          <li>PR</li>
+          <li>胜率</li>
+          <li>场均</li>
+          <li>命中</li>
+        </ul>
+        <ul>
+          <li>驱逐舰</li>
+          <li>{{ infoData.type.Destroyer.battles }}</li>
+          <li style="background-color: {{ infoData.type.Destroyer.pr.color }}">
+            {{ infoData.type.Destroyer.pr.value }}
+          </li>
+          <li>{{ infoData.type.Destroyer.wins }}</li>
+          <li>{{ infoData.type.Destroyer.damage }}</li>
+          <li>{{ infoData.type.Destroyer.hit }}</li>
+        </ul>
+        <ul>
+          <li>巡洋舰</li>
+          <li>{{ infoData.type.Cruiser.battles }}</li>
+          <li style="background-color: {{ infoData.type.Cruiser.pr.color }}">
+            {{ infoData.type.Cruiser.pr.value }}
+          </li>
+          <li>{{ infoData.type.Cruiser.wins }}</li>
+          <li>{{ infoData.type.Cruiser.damage }}</li>
+          <li>{{ infoData.type.Cruiser.hit }}</li>
+        </ul>
+        <ul>
+          <li>战列舰</li>
+          <li>{{ infoData.type.Battleship.battles }}</li>
+          <li style="background-color: {{ infoData.type.Battleship.pr.color }}">
+            {{ infoData.type.Battleship.pr.value }}
+          </li>
+          <li>{{ infoData.type.Battleship.wins }}</li>
+          <li>{{ infoData.type.Battleship.damage }}</li>
+          <li>{{ infoData.type.Battleship.hit }}</li>
+        </ul>
+        <ul>
+          <li>航空舰</li>
+          <li>{{ infoData.type.AirCarrier.battles }}</li>
+          <li style="background-color: {{ infoData.type.AirCarrier.pr.color }}">
+            {{ infoData.type.AirCarrier.pr.value }}
+          </li>
+          <li>{{ infoData.type.AirCarrier.wins }}</li>
+          <li>{{ infoData.type.AirCarrier.damage }}</li>
+          <li>{{ infoData.type.AirCarrier.hit }}</li>
+        </ul>
+      </div>
+
+      <div class="mode">
+        <p>单野</p>
+        <ul>
+          <li>场次</li>
+          <li>胜率</li>
+          <li>PR</li>
+          <li>经验</li>
+          <li>场均</li>
+          <li>K/D</li>
+        </ul>
+        <ul>
+          <li>{{ infoData.pvpSolo.battles }}</li>
+          <li>{{ infoData.pvpSolo.wins }}</li>
+          <li style="background-color: {{ infoData.pvpSolo.pr.color }}">
+            {{ infoData.pvpSolo.pr.value }}
+          </li>
+          <li>{{ infoData.pvpSolo.xp }}</li>
+          <li>{{ infoData.pvpSolo.damage }}</li>
+          <li>{{ infoData.pvpSolo.kd }}</li>
+        </ul>
+        <p>自行车</p>
+        <ul>
+          <li>场次</li>
+          <li>胜率</li>
+          <li>PR</li>
+          <li>经验</li>
+          <li>场均</li>
+          <li>K/D</li>
+        </ul>
+        <ul>
+          <li>{{ infoData.pvpTwo.battles }}</li>
+          <li>{{ infoData.pvpTwo.wins }}</li>
+          <li style="background-color: {{ infoData.pvpTwo.pr.color }}">
+            {{ infoData.pvpTwo.pr.value }}
+          </li>
+          <li>{{ infoData.pvpTwo.xp }}</li>
+          <li>{{ infoData.pvpTwo.damage }}</li>
+          <li>{{ infoData.pvpTwo.kd }}</li>
+        </ul>
+        <p>三轮车</p>
+        <ul>
+          <li>场次</li>
+          <li>胜率</li>
+          <li>PR</li>
+          <li>经验</li>
+          <li>场均</li>
+          <li>K/D</li>
+        </ul>
+        <ul>
+          <li>{{ infoData.pvpThree.battles }}</li>
+          <li>{{ infoData.pvpThree.wins }}</li>
+          <li style="background-color: {{ infoData.pvpThree.pr.color }}">
+            {{ infoData.pvpThree.pr.value }}
+          </li>
+          <li>{{ infoData.pvpThree.xp }}</li>
+          <li>{{ infoData.pvpThree.damage }}</li>
+          <li>{{ infoData.pvpThree.kd }}</li>
+        </ul>
+      </div>
+
+      <div class="bottom">&copy; 焦糖榛果 窝宝 Power by yuyuko</div>
+    </div>
+  </body>
+</html>
