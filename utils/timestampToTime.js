@@ -1,5 +1,8 @@
 const timestampToTime = (timestamp) => {
-  var date = new Date(timestamp * 1000);
+  if(timestamp.toString().length <= 10){
+    timestamp *= 1000;
+  }
+  var date = new Date(timestamp);
   var Y = date.getFullYear() + "-";
   var M =
     (date.getMonth() + 1 < 10

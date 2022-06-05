@@ -1,8 +1,8 @@
 const request = require("../../utils/request");
 
-const info = (qid) => {
+const info = (server, id) => {
   return request({
-    url: `/public/wows/account/v2/user/info?server=QQ&accountId=${qid}`,
+    url: `/public/wows/account/v2/user/info?server=${server}&accountId=${id}`,
     method: "get",
   });
 };

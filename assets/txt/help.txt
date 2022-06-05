@@ -1,0 +1,17 @@
+帮助：[ ] 内为可选填参数
+服务器：asia eu na ru cn
+
+绑定账号：
+wws set 服务器 游戏昵称
+
+近期战绩：
+wws me recent [天数](最大值为365)
+wws 服务器 游戏昵称 recent [天数](最大值为365)
+
+总战绩：
+wws me info
+wws 服务器 游戏昵称 info
+
+单船战绩：
+wws me ship 船名
+wws 服务器 游戏昵称 ship

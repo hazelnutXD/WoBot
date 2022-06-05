@@ -21,7 +21,7 @@ const bindId = async (qid, server, nickname) => {
       return "绑定失败";
     }
   } catch (error) {
-    console.log("error:" + error);
+    return "err:" + error;
   }
 };
 

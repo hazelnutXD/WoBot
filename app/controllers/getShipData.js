@@ -1,10 +1,20 @@
 const fs = require("fs");
 const nodeHtmlToImage = require("node-html-to-image");
+const findUserId = require("../api/findUserId");
 const findShipId = require("../api/findShipId");
 const personalShip = require("../api/personalShip");
 const timestampToTime = require("../../utils/timestampToTime");
 
-const getShipData = async (qid, shipName) => {
+const getShipData = async (server, id, shipName) => {
+  if (server != "QQ") {
+    let findIdRes = await findUserId(server, id);
+    if (findIdRes.data.code === 200) {
+      id = findIdRes.data.data.accountId;
+    } else {
+      return false;
+    }
+  }
+
   try {
     let findShipIdRes = await findShipId(shipName);
     let shipId;
@@ -17,27 +27,27 @@ const getShipData = async (qid, shipName) => {
       return false;
     }
 
-    let personalShipRes = await personalShip(qid, shipId);
-    if (personalShipRes.data.code != 500) {
-      var htmlTemplate = fs.readFileSync("./template/ship.html").toString();
+    let personalShipRes = await personalShip(server, id, shipId);
+    if (personalShipRes.data.code == 200) {
+      let htmlTemplate = fs.readFileSync("./template/ship.html").toString();
+      let imgBuffer = await nodeHtmlToImage({
+        html: htmlTemplate,
+        type: "jpeg",
+        quality: 100,
+        content: {
+          personalShipData: personalShipRes.data.data,
+          lastDateTime: timestampToTime(
+            personalShipRes.data.data.shipInfo.lastBattlesTime
+          ),
+        },
+      });
+      return imgBuffer;
     } else {
       return false;
     }
-
-    let imgBuffer = await nodeHtmlToImage({
-      html: htmlTemplate,
-      type: "jpeg",
-      quality: 100,
-      content: {
-        personalShipData: personalShipRes.data.data,
-        lastDateTime: timestampToTime(
-          personalShipRes.data.data.shipInfo.lastBattlesTime
-        ),
-      },
-    });
-    return imgBuffer;
   } catch (error) {
-    return error;
+    console.log(error);
+    return false;
   }
 };
 

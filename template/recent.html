@@ -116,8 +116,8 @@
         [{{ recentData.clanInfo.tag }}] {{ recentData.userName }} {{
         recentData.serverName }}
       </h2>
-      <div class="pr" style="background-color: {{ recentData.data.pr.color }}">
-        {{ recentData.data.pr.name }} (+{{ recentData.data.pr.nextValue }})
+      <div class="pr" style="background-color: {{ pvpInfo.pr.color }}">
+        {{ pvpInfo.pr.name }} (+{{ pvpInfo.pr.nextValue }})
       </div>
 
       <div class="recordTime">记录时间： {{ recordTime }}</div>
@@ -126,29 +126,29 @@
         <div class="row">
           <dl>
             <dt>场次</dt>
-            <dd>{{ recentData.data.battles }}</dd>
+            <dd>{{ pvpInfo.battles }}</dd>
           </dl>
           <dl>
             <dt>胜率</dt>
-            <dd>{{ recentData.data.wins }}%</dd>
+            <dd>{{ pvpInfo.wins }}%</dd>
           </dl>
           <dl>
             <dt>场均</dt>
-            <dd>{{ recentData.data.damage }}</dd>
+            <dd>{{ pvpInfo.damage }}</dd>
           </dl>
         </div>
         <div class="row">
           <dl>
             <dt>经验</dt>
-            <dd>{{ recentData.data.xp }}</dd>
+            <dd>{{ pvpInfo.xp }}</dd>
           </dl>
           <dl>
             <dt>K/D</dt>
-            <dd>{{ recentData.data.kd }}</dd>
+            <dd>{{ pvpInfo.kd }}</dd>
           </dl>
           <dl>
             <dt>命中</dt>
-            <dd>{{ recentData.data.hit }}</dd>
+            <dd>{{ pvpInfo.hit }}</dd>
           </dl>
         </div>
       </div>
@@ -167,16 +167,16 @@
         </ul>
         {{#each recentList}}
         <ul>
-          <li>{{ this.shipInfo.nameCn }}</li>
-          <li>{{ this.shipInfo.level }}</li>
-          <li>{{ this.battles }}</li>
-          <li style="background-color: {{ this.pr.color }}">
-            {{ this.pr.value }}
+          <li>{{ this.shipInfo.shipInfo.nameCn }}</li>
+          <li>{{ this.shipInfo.shipInfo.level }}</li>
+          <li>{{ this.shipInfo.battles }}</li>
+          <li style="background-color: {{ this.shipInfo.pr.color }}">
+            {{ this.shipInfo.pr.value }}
           </li>
-          <li>{{ this.xp }}</li>
-          <li>{{ this.wins }}</li>
-          <li>{{ this.damage }}</li>
-          <li>{{ this.hit }}</li>
+          <li>{{ this.shipInfo.xp }}</li>
+          <li>{{ this.shipInfo.wins }}</li>
+          <li>{{ this.shipInfo.damage }}</li>
+          <li>{{ this.shipInfo.hit }}</li>
         </ul>
         {{/each}}
       </div>

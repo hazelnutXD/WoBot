@@ -1,8 +1,8 @@
 const request = require("../../utils/request");
 
-const personalShip = (qid, shipId) => {
+const personalShip = (server, id, shipId) => {
   return request({
-    url: `/public/wows/account/ship/info?server=QQ&accountId=${qid}&shipId=${shipId}`,
+    url: `/public/wows/account/ship/info?server=${server}&accountId=${id}&shipId=${shipId}`,
   });
 };
 
