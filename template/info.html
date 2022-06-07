@@ -2,117 +2,117 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Title</title>
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        width: 500px;
+        font-family: "Microsoft YaHei UI";
+      }
+
+      .container {
+        width: 100%;
+        padding: 50px 0 30px;
+      }
+
+      .container h2 {
+        color: #333;
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .pr {
+        width: 100%;
+        height: 30px;
+        margin: 20px 0 10px;
+        text-align: center;
+        font-size: 15px;
+        line-height: 30px;
+        letter-spacing: 2px;
+        color: #333;
+        font-weight: 600;
+      }
+
+      .recordTime {
+        color: #666;
+        text-align: center;
+      }
+
+      .info {
+        width: 100%;
+        height: 160px;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .info .row {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .info dl {
+        width: 20%;
+        height: 70px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+
+      .info dt {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        letter-spacing: 2px;
+      }
+
+      .typeList,
+      .mode {
+        padding: 20px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .typeList p,
+      .mode p {
+        font-size: 14px;
+        color: #777;
+        text-align: center;
+      }
+
+      .typeList ul,
+      .mode ul {
+        width: 100%;
+        margin: 15px 0;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .typeList li,
+      .mode li {
+        width: 16.5%;
+        height: 16px;
+        text-align: center;
+        list-style: none;
+        overflow: hidden;
+      }
+
+      .bottom {
+        font-size: 13px;
+        text-align: center;
+        color: #444;
+        font-weight: 600;
+      }
+    </style>
   </head>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      width: 500px;
-      font-family: "Microsoft YaHei UI";
-    }
-
-    .container {
-      width: 100%;
-      padding: 50px 0 30px;
-    }
-
-    .container h2 {
-      color: #333;
-      font-size: 24px;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    .pr {
-      width: 100%;
-      height: 30px;
-      margin: 20px 0 10px;
-      text-align: center;
-      font-size: 15px;
-      line-height: 30px;
-      letter-spacing: 2px;
-      color: #333;
-      font-weight: 600;
-    }
-
-    .recordTime {
-      color: #666;
-      text-align: center;
-    }
-
-    .info {
-      width: 100%;
-      height: 160px;
-      margin-top: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .info .row {
-      width: 100%;
-      display: flex;
-      justify-content: space-around;
-    }
-
-    .info dl {
-      width: 20%;
-      height: 70px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-    }
-
-    .info dt {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-      letter-spacing: 2px;
-    }
-
-    .typeList,
-    .mode {
-      padding: 20px;
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .typeList p,
-    .mode p {
-      font-size: 14px;
-      color: #777;
-      text-align: center;
-    }
-
-    .typeList ul,
-    .mode ul {
-      width: 100%;
-      margin: 15px 0;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .typeList li,
-    .mode li {
-      width: 16.5%;
-      height: 16px;
-      text-align: center;
-      list-style: none;
-      overflow: hidden;
-    }
-
-    .bottom {
-      font-size: 13px;
-      text-align: center;
-      color: #444;
-      font-weight: 600;
-    }
-  </style>
 
   <body>
     <div class="container">
@@ -198,7 +198,7 @@
           <li>{{ infoData.type.Battleship.hit }}</li>
         </ul>
         <ul>
-          <li>航空舰</li>
+          <li>航空母舰</li>
           <li>{{ infoData.type.AirCarrier.battles }}</li>
           <li style="background-color: {{ infoData.type.AirCarrier.pr.color }}">
             {{ infoData.type.AirCarrier.pr.value }}

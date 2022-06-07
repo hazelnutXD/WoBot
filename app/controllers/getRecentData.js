@@ -1,8 +1,8 @@
 const fs = require("fs");
-const nodeHtmlToImage = require("node-html-to-image");
 const recent = require("../api/recent");
 const findUserId = require("../api/findUserId");
 const timestampToTime = require("../../utils/timestampToTime");
+const drawImg = require("../../utils/drawImg");
 
 const getRecentData = async (server, id, day) => {
   if (server != "QQ") {
@@ -17,22 +17,17 @@ const getRecentData = async (server, id, day) => {
   let recentRes = await recent(server, id, day);
   if (recentRes.data.code === 200) {
     let htmlTemplate = fs.readFileSync("./template/recent.html").toString();
-    let imgBuffer = await nodeHtmlToImage({
-      html: htmlTemplate,
-      type: "jpeg",
-      quality: 100,
-      content: {
-        recentData: recentRes.data.data,
-        pvpInfo: recentRes.data.data.shipData[0].pvpInfo,
-        recentList: recentRes.data.data.shipData[0].shipData.filter((item) => {
-          return item.shipInfo.shipId != -1;
-        }),
-        recordTime: timestampToTime(
-          recentRes.data.data.shipData[0].recordDateTime
-        ),
-      },
-    });
-    return imgBuffer;
+    let content = {
+      recentData: recentRes.data.data,
+      pvpInfo: recentRes.data.data.shipData[0].pvpInfo,
+      recentList: recentRes.data.data.shipData[0].shipData.filter((item) => {
+        return item.shipInfo.shipId != -1;
+      }),
+      recordTime: timestampToTime(
+        recentRes.data.data.shipData[0].recordDateTime
+      ),
+    };
+    return drawImg(htmlTemplate, content);
   } else {
     return false;
   }
