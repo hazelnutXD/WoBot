@@ -116,8 +116,8 @@
         [{{ recentData.clanInfo.tag }}] {{ recentData.userName }} {{
         recentData.serverName }}
       </h2>
-      <div class="pr" style="background-color: {{ pvpInfo.pr.color }}">
-        {{ pvpInfo.pr.name }} (+{{ pvpInfo.pr.nextValue }})
+      <div class="pr" style="background-color: {{ rankInfo.pr.color }}">
+        {{ rankInfo.pr.name }} (+{{ rankInfo.pr.nextValue }})
       </div>
 
       <div class="recordTime">记录时间： {{ recordTime }}</div>
@@ -126,29 +126,29 @@
         <div class="row">
           <dl>
             <dt>场次</dt>
-            <dd>{{ pvpInfo.battles }}</dd>
+            <dd>{{ rankInfo.battles }}</dd>
           </dl>
           <dl>
             <dt>胜率</dt>
-            <dd>{{ pvpInfo.wins }}%</dd>
+            <dd>{{ rankInfo.wins }}%</dd>
           </dl>
           <dl>
             <dt>场均</dt>
-            <dd>{{ pvpInfo.damage }}</dd>
+            <dd>{{ rankInfo.damage }}</dd>
           </dl>
         </div>
         <div class="row">
           <dl>
             <dt>经验</dt>
-            <dd>{{ pvpInfo.xp }}</dd>
+            <dd>{{ rankInfo.xp }}</dd>
           </dl>
           <dl>
             <dt>K/D</dt>
-            <dd>{{ pvpInfo.kd }}</dd>
+            <dd>{{ rankInfo.kd }}</dd>
           </dl>
           <dl>
             <dt>命中</dt>
-            <dd>{{ pvpInfo.hit }}</dd>
+            <dd>{{ rankInfo.hit }}</dd>
           </dl>
         </div>
       </div>
@@ -165,18 +165,18 @@
           <li>场均</li>
           <li>命中</li>
         </ul>
-        {{#each pvpRecentList}}
+        {{#each rankRecentList}}
         <ul>
-          <li>{{ this.shipInfo.shipInfo.nameCn }}</li>
-          <li>{{ this.shipInfo.shipInfo.level }}</li>
-          <li>{{ this.shipInfo.battles }}</li>
-          <li style="background-color: {{ this.shipInfo.pr.color }}">
-            {{ this.shipInfo.pr.value }}
+          <li>{{ this.rankSolo.shipInfo.nameCn }}</li>
+          <li>{{ this.rankSolo.shipInfo.level }}</li>
+          <li>{{ this.rankSolo.battles }}</li>
+          <li style="background-color: {{ this.rankSolo.pr.color }}">
+            {{ this.rankSolo.pr.value }}
           </li>
-          <li>{{ this.shipInfo.xp }}</li>
-          <li>{{ this.shipInfo.wins }}</li>
-          <li>{{ this.shipInfo.damage }}</li>
-          <li>{{ this.shipInfo.hit }}</li>
+          <li>{{ this.rankSolo.xp }}</li>
+          <li>{{ this.rankSolo.wins }}</li>
+          <li>{{ this.rankSolo.damage }}</li>
+          <li>{{ this.rankSolo.hit }}</li>
         </ul>
         {{/each}}
       </div>

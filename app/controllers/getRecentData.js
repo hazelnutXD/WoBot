@@ -4,7 +4,7 @@ const findUserId = require("../api/findUserId");
 const timestampToTime = require("../../utils/timestampToTime");
 const drawImg = require("../../utils/drawImg");
 
-const getRecentData = async (server, id, day) => {
+const getRecentData = async (mode, server, id, day) => {
   if (server != "QQ") {
     let findIdRes = await findUserId(server, id);
     if (findIdRes.data.code === 200) {
@@ -20,13 +20,27 @@ const getRecentData = async (server, id, day) => {
     let content = {
       recentData: recentRes.data.data,
       pvpInfo: recentRes.data.data.shipData[0].pvpInfo,
-      recentList: recentRes.data.data.shipData[0].shipData.filter((item) => {
+      rankInfo: recentRes.data.data.shipData[0].rankInfo,
+      pvpRecentList: recentRes.data.data.shipData[0].shipData.filter((item) => {
         return item.shipInfo.shipId != -1;
       }),
+      rankRecentList: recentRes.data.data.shipData[0].shipData.filter(
+        (item) => {
+          return item.rankSolo.shipId != -1;
+        }
+      ),
       recordTime: timestampToTime(
         recentRes.data.data.shipData[0].recordDateTime
       ),
     };
+    switch (mode) {
+      case "pvp":
+        htmlTemplate = fs.readFileSync("./template/recent.html").toString();
+        break;
+      case "rank":
+        htmlTemplate = fs.readFileSync("./template/rank.html").toString();
+        break;
+    }
     return drawImg(htmlTemplate, content);
   } else {
     return false;

@@ -22,7 +22,16 @@ const order = async (e, segment) => {
         switch (e.message[0].text.split(" ")[2]) {
           case "recent":
             day = e.message[0].text.split(" ")[3] || 7;
-            imgBuffer = await getRecentData("QQ", qid, day);
+            imgBuffer = await getRecentData("pvp", "QQ", qid, day);
+            e.reply(
+              imgBuffer != false
+                ? segment.image(imgBuffer)
+                : `没有找到账号近${day}天的数据`
+            );
+            break;
+          case "rank":
+            day = e.message[0].text.split(" ")[3] || 7;
+            imgBuffer = await getRecentData("rank", "QQ", qid, day);
             e.reply(
               imgBuffer != false
                 ? segment.image(imgBuffer)
@@ -56,7 +65,16 @@ const order = async (e, segment) => {
         switch (e.message[0].text.split(" ")[3]) {
           case "recent":
             day = e.message[0].text.split(" ")[4] || 7;
-            imgBuffer = await getRecentData(server, nickname, day);
+            imgBuffer = await getRecentData("pvp", server, nickname, day);
+            e.reply(
+              imgBuffer != false
+                ? segment.image(imgBuffer)
+                : `没有找到账号近${day}天的数据`
+            );
+            break;
+          case "rank":
+            day = e.message[0].text.split(" ")[4] || 7;
+            imgBuffer = await getRecentData("rank", server, nickname, day);
             e.reply(
               imgBuffer != false
                 ? segment.image(imgBuffer)
