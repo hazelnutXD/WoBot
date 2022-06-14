@@ -19,3 +19,6 @@ wws 服务器 游戏昵称 info
 单船战绩：
 wws me ship 船名
 wws 服务器 游戏昵称 ship 船名
+
+圣诞开箱：
+wws 开组箱子

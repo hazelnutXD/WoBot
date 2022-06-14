@@ -3,6 +3,7 @@ const bindId = require("../app/controllers/bindId");
 const getRecentData = require("../app/controllers/getRecentData");
 const getInfoData = require("../app/controllers/getInfoData");
 const getShipData = require("../app/controllers/getShipData");
+const getRollData = require("../app/controllers/getRollData");
 
 const order = async (e, segment) => {
   let isOrder =
@@ -101,6 +102,9 @@ const order = async (e, segment) => {
           default:
             e.reply("指令错误，请查看wws help", true);
         }
+        break;
+      case "开组箱子":
+        e.reply(await getRollData(), true);
         break;
       case "help":
         let helpMsg = fs.readFileSync("./assets/txt/help.txt").toString();
